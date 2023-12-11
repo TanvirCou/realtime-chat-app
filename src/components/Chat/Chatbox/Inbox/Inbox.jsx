@@ -6,8 +6,9 @@ import io from "socket.io-client";
 
 var socket, selectedChatCompare;
 
-const Inbox = () => {
-    const { user, selectedChat, setSelectedChat, chats, setChats } = useContext(UserContext);
+
+const Inbox = ({fetchAgain, setFetchAgain}) => {
+    const { user, selectedChat, chats, notifications, setNotifications } = useContext(UserContext);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -15,6 +16,7 @@ const Inbox = () => {
     const [socketConnected, setSocketConnected] = useState(false);
     const [typing, setTyping] = useState(false);
     const [isTyping, setIsTyping] = useState(false);
+
 
 
     useEffect(() => {
@@ -107,12 +109,17 @@ const Inbox = () => {
     useEffect(() => {
         socket.on("message received", (newMessageReceived) => {
             if (!selectedChatCompare || (selectedChatCompare._id !== newMessageReceived.chat._id)) {
-                //
+                if(!notifications.includes(newMessageReceived)) {
+                    setNotifications([newMessageReceived, ...notifications]);
+                    setFetchAgain(!fetchAgain);
+                }
             } else {
                 setMessages([...messages, newMessageReceived]);
             }
         });
-    })
+    });
+
+    console.log(notifications);
 
 
     return (

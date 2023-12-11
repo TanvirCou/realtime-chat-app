@@ -19,10 +19,10 @@ const Home = () => {
     return (
         <div className="bgImg">
             <div className="absolute w-full flex flex-col items-center top-8">
-                <div className="bg-white w-1/3 py-3 font-[Poppins] font-bold text-3xl text-center rounded mb-2">
+                <div className="bg-white w-4/5 sm:w-3/5 md:w-1/2 lg:w-1/3 py-3 font-[Poppins] font-bold text-3xl text-center rounded mb-2">
                     <p>Panda-Chat</p>
                 </div>
-                <div className="bg-white w-1/3 py-4 rounded-md">
+                <div className="bg-white w-4/5 sm:w-3/5 md:w-1/2 lg:w-1/3 py-4 rounded-md">
                     <div className="w-full flex p-2">
                         <p onClick={() => setActive(true)} className={`w-1/2 text-center text-lg font-semibold rounded-3xl py-2 cursor-pointer ${active ? "bg-sky-400" : "bg-white"}`}>Login</p>
                         <p onClick={() => setActive(false)} className={`w-1/2 text-center text-lg font-semibold rounded-3xl py-2 cursor-pointer ${!active ? "bg-sky-400" : "bg-white"}`}>SignUp</p>

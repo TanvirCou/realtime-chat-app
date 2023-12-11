@@ -7,7 +7,7 @@ import axios from "axios";
 import Chatbox from "../Chatbox/Chatbox/Chatbox";
 
 const Chat = () => {
-    const {user, setSelectedChat, chats, setChats} = useContext(UserContext);
+    const {user, selectedChat, chats, setChats} = useContext(UserContext);
     const [loggedIn, setLoggedIn] = useState();
     const [fetchAgain, setFetchAgain] = useState(false);
 
@@ -24,7 +24,6 @@ const Chat = () => {
                 };
                 const res = await axios.get(`http://localhost:3000/api/chat/allChat`, config)
                 setChats(res.data);
-                console.log(res.data);
             } catch(err) {
                 console.log(err);
             }
@@ -39,14 +38,14 @@ const Chat = () => {
                     <Navbar />
                 </div>
                 <div className="flex justify-center">
-                    <div className="w-1/3 h-[90vh] p-2">
+                    <div className={`md:w-1/3 w-full ${selectedChat ? "max-md:hidden" : "max-md:flex"} h-[90vh] p-2`}>
                         <div className="w-full h-full bg-white rounded-md">
                             <Conversation chats={chats} loggedIn={loggedIn} />
                         </div>
                     </div>
-                    <div className="w-2/3 h-[90vh] p-2">
+                    <div className={`md:w-2/3 w-full ${selectedChat ? "max-md:flex" : "max-md:hidden"} h-[90vh] p-2`}>
                         <div className="w-full h-full bg-white rounded-md">
-                            <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+                          {user &&  <Chatbox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />}
                         </div>
                     </div>
                 </div>

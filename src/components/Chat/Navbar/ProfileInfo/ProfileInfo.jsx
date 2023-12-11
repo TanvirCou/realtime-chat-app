@@ -13,16 +13,16 @@ const ProfileInfo = ({ user }) => {
         <div className="dropdown dropdown-end">
             <div tabIndex={0} role="button" className="btn bg-white shadow-none border-none px-1">
                 <div className="avatar flex items-center">
-                    <div className="w-8 rounded-[50%] object-cover">
+                    <div className="w-7 md:w-8 rounded-[50%] object-cover">
                         <img src={user?.pic} />
                     </div>
-                    <div className='text-2xl ml-1.5 flex items-center'>
+                    <div className='text-xl md:text-2xl ml-0.5 md:ml-1.5 flex items-center'>
                         <ion-icon name="caret-down-sharp"></ion-icon>
                     </div>
                 </div>
 
             </div>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32">
                 <li>
                     <button className="text-md font-medium" onClick={() => profileModal.current.showModal()}>My Profile</button>
                     <dialog  ref={profileModal} className="modal flex items-center justify-center">
