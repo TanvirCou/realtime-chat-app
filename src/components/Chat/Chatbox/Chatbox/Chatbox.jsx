@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+/* eslint-disable react/prop-types */
+import { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from '../../../context/UserProvider';
 import ChatboxModal from '../ChatboxModal/ChatboxModal';
 import axios from 'axios';
@@ -11,7 +12,7 @@ var socket, selectedChatCompare;
 
 const Chatbox = ({ fetchAgain, setFetchAgain }) => {
 
-    const { user, selectedChat, setSelectedChat, chats, setChats, notifications, setNotifications } = useContext(UserContext);
+    const { user, selectedChat, setSelectedChat, notifications, setNotifications } = useContext(UserContext);
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [loading, setLoading] = useState(false);
@@ -67,7 +68,6 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                 setMessages([...messages, res.data]);
 
                 socket.emit("new message", res.data);
-                console.log(res.data);
             } catch (err) {
                 console.log(err);
             }
@@ -112,7 +112,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
     useEffect(() => {
         socket.on("message received", (newMessageReceived) => {
             if (!selectedChatCompare || (selectedChatCompare._id !== newMessageReceived.chat._id)) {
-                if(!notifications.includes(newMessageReceived)) {
+                if (!notifications.includes(newMessageReceived)) {
                     setNotifications([newMessageReceived, ...notifications]);
                     setFetchAgain(!fetchAgain);
                 }
@@ -122,23 +122,17 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
         });
     });
 
-    console.log(notifications);
-
     const handleBack = () => {
         setSelectedChat();
         setFetchAgain(!fetchAgain);
     };
-
-    console.log(notifications);
-
-    
 
     return (
         <div className='h-full'>
             {
                 selectedChat ?
                     <>
-                        <div className='h-full '>
+                        <div className='h-full'>
                             <div className='flex items-center justify-between px-4 py-1'>
                                 <div className='text-2xl flex items-center md:hidden' onClick={handleBack}>
                                     <ion-icon name="arrow-back-sharp"></ion-icon>
@@ -146,43 +140,38 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                                 <p className='text-xl md:text-2xl font-semibold'>
                                     {!selectedChat.isGroupChat ? getFriendChatName(user, selectedChat.users) : selectedChat.chatNam}
                                 </p>
-                                {!selectedChat.isGroupChat ? <ChatboxModal fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/> : <ChatboxModal group fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>}
-                                
+                                {!selectedChat.isGroupChat ? <ChatboxModal fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} /> : <ChatboxModal group fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />}
+
                             </div>
-                            
+
                             <div>
-            <div className='h-[81.5vh] w-full p-2'>
-                <div className='h-full w-full bg-gray-200 rounded-md flex flex-col justify-between'>
-                    <div className='h-full overflow-y-scroll'>
-                        {
-                            loading ? <div className='flex justify-center items-center h-full'><span className="loading loading-ring loading-lg"></span></div>
-                                :
-                                <div>
-                                    {
-                                        messages.map((message, index) => <div ref={scrollRef} key={message._id}><Message index={index} message={message} messages={messages} /> </div>)
-                                    }
+                                <div className='h-[55vh] md:h-[81.5vh] w-full p-2'>
+                                    <div className='h-full w-full bg-gray-200 rounded-md flex flex-col justify-between'>
+                                        <div className='h-full overflow-y-scroll'>
+                                            {
+                                                loading ? <div className='flex justify-center items-center h-full'><span className="loading loading-ring loading-lg"></span></div>
+                                                    :
+                                                    <div>
+                                                        {
+                                                            messages.map((message, index) => <div ref={scrollRef} key={message._id}><Message index={index} message={message} messages={messages} /> </div>)
+                                                        }
+                                                    </div>
+                                            }
+                                        </div>
+
+                                        {isTyping ? <div className='bg-white w-fit h-fit px-3 rounded-md my-1 mx-2'>
+                                            <span className="loading loading-dots loading-md"></span>
+                                        </div> : ""}
+                                        <div className='flex items-center'>
+                                            <input type="text" value={newMessage} onChange={handleTyping} placeholder="Type here" className="input input-bordered w-full" />
+                                            <button onClick={handleSendMessage} className='bg-sky-600 text-white px-3 ml-2 py-2.5 font-medium rounded-md'>Update</button>
+                                        </div>
+                                    </div>
                                 </div>
-                        }
-                    </div>
-              
-                    {isTyping ? <div className='bg-white w-fit h-fit px-3 rounded-md my-1 mx-2'>
-                            <span className="loading loading-dots loading-md"></span>
-                        </div> : ""}
-                    <div className='flex items-center'>
-                        <input type="text" value={newMessage} onChange={handleTyping} placeholder="Type here" className="input input-bordered w-full" />
-                        <button onClick={handleSendMessage} className='bg-sky-600 text-white px-3 ml-2 py-2.5 font-medium rounded-md'>Update</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+                            </div>
                         </div>
                     </>
-
                     :
-
-
                     <div className='text-gray-500 text-2xl font-medium flex justify-center h-full items-center'>
                         <p>Click a user to start conversation</p>
                     </div>
