@@ -36,7 +36,7 @@ const SideDrawer = ({ search, setSearch, handleSearch, loading, searchResult }) 
         <div className="drawer">
             <input id="my-drawer" ref={drawerRef} type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
-                <label htmlFor="my-drawer" data-tip="Search for friends" className="btn flex text-md  font-medium bg-gray-200 shadow-none border-none drawer-button tooltip tooltip-bottom">
+                <label htmlFor="my-drawer" data-tip="Search for friends" className="btn flex text-md font-medium bg-gray-200 shadow-none border-none drawer-button tooltip tooltip-right md:tooltip-bottom">
                     <div className='md:text-xl text-lg flex items-center'>
                         <ion-icon name="search-sharp"></ion-icon>
                     </div>
