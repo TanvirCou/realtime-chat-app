@@ -16,7 +16,7 @@ const Login = () => {
             password: passRef.current.value
         };
         try {
-            const res = await axios.post("http://localhost:3000/api/user/login", user);
+            const res = await axios.post("https://chat-app-2tmy.onrender.com/api/user/login", user);
             localStorage.setItem("userData", JSON.stringify(res.data));
             navigate("/chat");
         } catch (err) {

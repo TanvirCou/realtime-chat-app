@@ -18,7 +18,7 @@ const Chat = () => {
                         authorization: `Bearer ${user.access_token}`
                     },
                 };
-                const res = await axios.get(`http://localhost:3000/api/chat/allChat`, config)
+                const res = await axios.get(`https://chat-app-2tmy.onrender.com/api/chat/allChat`, config)
                 setChats(res.data);
             } catch (err) {
                 console.log(err);

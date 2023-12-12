@@ -20,7 +20,7 @@ const Navbar = () => {
                     authorization: `Bearer ${user.access_token}`
                 },
             };
-            const res = await axios.get(`http://localhost:3000/api/user?search=${search}`, config)
+            const res = await axios.get(`https://chat-app-2tmy.onrender.com/api/user?search=${search}`, config)
             setLoading(false);
             setSearchResult(res.data);
         } catch (err) {

@@ -22,7 +22,7 @@ const SignUp = () => {
                 pic: file
             }
             try {
-                await axios.post("http://localhost:3000/api/user/signUp", data);
+                await axios.post("https://chat-app-2tmy.onrender.com/api/user/signUp", data);
                 alert("Registration complete.Please login to your account");
                 window.location.reload();
             } catch (err) {

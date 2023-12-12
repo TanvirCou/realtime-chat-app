@@ -37,7 +37,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                     },
                 };
                 setNewMessage("");
-                const res = await axios.get(`http://localhost:3000/api/message/${selectedChat._id}`, config)
+                const res = await axios.get(`https://chat-app-2tmy.onrender.com/api/message/${selectedChat._id}`, config)
                 setMessages(res.data);
                 setLoading(false);
 
@@ -61,7 +61,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                     },
                 };
                 setNewMessage("");
-                const res = await axios.post(`http://localhost:3000/api/message/send`, {
+                const res = await axios.post(`https://chat-app-2tmy.onrender.com/api/message/send`, {
                     content: newMessage,
                     chatId: selectedChat._id
                 }, config)
@@ -100,7 +100,7 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
     };
 
     useEffect(() => {
-        socket = io("http://localhost:3000/");
+        socket = io("https://chat-app-2tmy.onrender.com/");
         socket.emit("setup", user.user);
         socket.on("connected", () => {
             setSocketConnected(true);

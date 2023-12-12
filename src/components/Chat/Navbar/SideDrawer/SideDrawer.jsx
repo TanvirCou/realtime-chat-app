@@ -20,7 +20,7 @@ const SideDrawer = ({ search, setSearch, handleSearch, loading, searchResult }) 
                 },
             };
 
-            const res = await axios.post(`http://localhost:3000/api/chat/createChat`, { userId: friend._id }, config);
+            const res = await axios.post(`https://chat-app-2tmy.onrender.com/api/chat/createChat`, { userId: friend._id }, config);
             if (!chats.find(c => c._id === res.data._id)) {
                 setChats([res.data, ...chats]);
             }

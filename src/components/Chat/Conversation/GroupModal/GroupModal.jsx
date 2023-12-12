@@ -24,7 +24,7 @@ const GroupModal = () => {
                     authorization: `Bearer ${user.access_token}`
                 },
             };
-            const res = await axios.get(`http://localhost:3000/api/user?search=${search}`, config)
+            const res = await axios.get(`https://chat-app-2tmy.onrender.com/api/user?search=${search}`, config)
             setLoading(false);
             setSearchResult(res.data);
         } catch (err) {
@@ -54,7 +54,7 @@ const GroupModal = () => {
                     authorization: `Bearer ${user.access_token}`
                 },
             };
-            const res = await axios.post(`http://localhost:3000/api/chat/createGroupChat`, {
+            const res = await axios.post(`https://chat-app-2tmy.onrender.com/api/chat/createGroupChat`, {
                 name: groupChatName,
                 usersId: JSON.stringify(selectedUsers.map(u => u._id))
             }, config)

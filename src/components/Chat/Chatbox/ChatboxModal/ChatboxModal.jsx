@@ -25,7 +25,7 @@ const ChatboxModal = ({ group, fetchAgain, setFetchAgain }) => {
                     authorization: `Bearer ${user.access_token}`
                 },
             };
-            const res = await axios.put(`http://localhost:3000/api/chat/renameGroup`, {
+            const res = await axios.put(`https://chat-app-2tmy.onrender.com/api/chat/renameGroup`, {
                 chatId: selectedChat._id,
                 chatName: groupChatName
             }, config)
@@ -49,7 +49,7 @@ const ChatboxModal = ({ group, fetchAgain, setFetchAgain }) => {
                     authorization: `Bearer ${user.access_token}`
                 },
             };
-            const res = await axios.get(`http://localhost:3000/api/user?search=${search}`, config)
+            const res = await axios.get(`https://chat-app-2tmy.onrender.com/api/user?search=${search}`, config)
             setLoading(false);
             setSearchResult(res.data);
         } catch (err) {
@@ -70,7 +70,7 @@ const ChatboxModal = ({ group, fetchAgain, setFetchAgain }) => {
                             authorization: `Bearer ${user.access_token}`
                         },
                     };
-                    const res = await axios.put(`http://localhost:3000/api/chat/addToGroup`, {
+                    const res = await axios.put(`https://chat-app-2tmy.onrender.com/api/chat/addToGroup`, {
                         chatId: selectedChat._id,
                         userId: friend._id
                     }, config)
@@ -94,7 +94,7 @@ const ChatboxModal = ({ group, fetchAgain, setFetchAgain }) => {
                         authorization: `Bearer ${user.access_token}`
                     },
                 };
-                const res = await axios.put(`http://localhost:3000/api/chat/removeFromGroup`, {
+                const res = await axios.put(`https://chat-app-2tmy.onrender.com/api/chat/removeFromGroup`, {
                     chatId: selectedChat._id,
                     userId: friend._id
                 }, config)
