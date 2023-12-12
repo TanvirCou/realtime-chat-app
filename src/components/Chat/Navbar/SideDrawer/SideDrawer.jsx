@@ -60,7 +60,7 @@ const SideDrawer = ({ search, setSearch, handleSearch, loading, searchResult }) 
                     </li>
                     {searchResult && <li>
                         {loading ? <SearchLoading />
-                            : (searchResult?.map(friend => <SearchFriends key={friend._id} friend={friend} handleClick={handleClick} />))}
+                            : (searchResult?.slice(0, 6).map(friend => <SearchFriends key={friend._id} friend={friend} handleClick={handleClick} />))}
                     </li>}
 
                 </ul>

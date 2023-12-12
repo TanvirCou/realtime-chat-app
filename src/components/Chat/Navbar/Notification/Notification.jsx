@@ -22,7 +22,7 @@ const Notification = () => {
         </div>
         {notifications.length ? <span className='absolute flex items-center justify-center top-1 ml-3  bg-red-600 rounded-[50%] text-white px-[5px] font-medium text-xs'>{notifications.length}</span> : ""}
       </div>
-      <ul tabIndex={0} className="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-56">
+      <ul tabIndex={0} className="dropdown-content overflow-y-scroll webkit max-h-28 z-[1] menu p-1 shadow bg-base-100 rounded-box w-56">
         <li>
           {!notifications.length && <p className='font-medium py-1 text-sky-600'>No message received</p>}
 

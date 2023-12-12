@@ -14,10 +14,10 @@ const Conversation = () => {
                 <p className='text-xl font-medium'>My Chats</p>
                 <GroupModal />
             </div>
-            <div className='px-4'>
+            <div className='px-4 h-[79vh] overflow-y-scroll webkit'>
                 {
                     (chats && user) ? (chats?.map(chat => (
-                        <div key={chat._id}>
+                        <div key={chat._id} >
                             <div onClick={() => setSelectedChat(chat)} className={`text-lg font-semibold border my-2 py-2 px-4 ${selectedChat === chat ? "bg-sky-500 text-white" : "bg-gray-300 text-black"} rounded-md cursor-pointer`}>
                                 {
                                     !chat.isGroupChat ? getFriendChatName(user, chat.users) : chat.chatName

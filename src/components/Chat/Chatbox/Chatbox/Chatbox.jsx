@@ -145,9 +145,9 @@ const Chatbox = ({ fetchAgain, setFetchAgain }) => {
                             </div>
 
                             <div>
-                                <div className='h-[55vh] md:h-[81.5vh] w-full p-2'>
+                                <div className='h-[81.5vh] w-full p-2'>
                                     <div className='h-full w-full bg-gray-200 rounded-md flex flex-col justify-between'>
-                                        <div className='h-full overflow-y-scroll'>
+                                        <div className='h-full overflow-y-scroll webkit'>
                                             {
                                                 loading ? <div className='flex justify-center items-center h-full'><span className="loading loading-ring loading-lg"></span></div>
                                                     :
