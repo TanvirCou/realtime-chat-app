@@ -1,10 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../../App.css";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
     const [active, setActive] = useState(true)
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const userInfo = JSON.parse(localStorage.getItem("userData"));
+
+        if (userInfo) {
+            navigate("/chat");
+        }
+    }, [navigate]);
 
     return (
         <div className="bgImg">
